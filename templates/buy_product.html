@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+{% block main %}
+<main class="main_basket">
+    <div class="container">
+        <h1>Информация для покупки</h1>
+        <form method="POST" action="{{ url_for('buy_product', product_id=product.id) }}">
+            <div class="form-group">
+                <label >Цена:</label>
+                <label>
+                    {{product.price}}
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="delivery_address">Адрес доставки:</label>
+                <input type="text" class="form-control" id="delivery_address" name="delivery_address" required>
+            </div>
+            <div class="form-group">
+                <label for="delivery_date">Дата доставки:</label>
+                <input type="datetime-local" class="form-control" id="delivery_date" name="delivery_date" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+    </div>
+</main>
+{% endblock %}

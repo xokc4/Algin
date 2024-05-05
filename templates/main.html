@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoin</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- Подключаем стили для ползунков -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+    <!-- Подключаем jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Подключаем библиотеку для ползунков -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+     <script src="/static/js/javascript.js"></script>
+
+    <style>
+       /* Apply color to all text elements within the header */
+        .header-color,
+        .header-color * {
+            color: #cc9 !important; /* Using !important to override any other color declarations */
+        }
+
+        /* Apply color to the dropdown menu text */
+        .header-color .dropdown-menu {
+            color: #000; /* Default color for dropdown text */
+        }
+
+        /* Apply color to the dropdown menu links */
+        .header-color .dropdown-menu a {
+            color: #cc9 !important; /* Desired color for dropdown links */
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header-color ">
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <a class="navbar-brand" href="/">
+                <img src="/static/image/2024-04-14_17-38-215.png" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <select name="combobox" class="nav-link select_com" id="combobox">
+                            <option value="" disabled selected hidden>Каталог товаров</option>
+                            <option value="wine" data-url="/filtrAl/<Вино>">Вина</option>
+                            <option value="whiskey" data-url="/filtrAl/<Виски>">Виски</option>
+                            <option value="rum" data-url="/filtrAl/<Ром>">Ром</option>
+                            <option value="cognac" data-url="/filtrAl/<Коньяк>">Коньяк. Бренди. Арманьяк</option>
+                            <option value="tequila" data-url="/filtrAl/<Текила>">Текила</option>
+                            <option value="gin" data-url="/filtrAl/<Джин>">Джин</option>
+                            <option value="vodka" data-url="/filtrAl/<Водка>">Водка</option>
+                            <option value="liqueurs" data-url="/filtrAl/<Ликеры>">Ликеры. Вермуты</option>
+                            <option value="beer" data-url="/filtrAl/<Пиво. Сидр. Слабоалкогольные напитки>">Пиво. Сидр. Слабоалкогольные напитки</option>
+                        </select>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text" href="/buyer">Покупателю</a>
+                    </li>
+                    <li class="nav-item text">
+                        <a class="nav-link text" href="/company">О нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/discounts">Акции</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/store">Наши магазины</a>
+                    </li>
+                </ul>
+                <form class="form-inline" action="/search" method="post">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Поиск" name="search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Найти</button>
+                </form>
+                <div class="basket_header">
+                    <a href="/basket">
+                        <img src="/static/image/basket.png">
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    {% block main %}
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Каталог Algoin</h1>
+                </div>
+            </div>
+            <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                     <a class="card-link" href="/filtrAl/<Вино>">
+                    <div class="card">
+
+                        <img src="/static/image/Вино.jpg"class="card-img-top" alt="Виски">
+                        <div class="card-body">
+
+                                <h5 class="card-title">Вино</h5>
+
+                        </div>
+
+                    </div>
+                     </a>
+                </div>
+                <div class="col-md-4">
+                    <a class="card-link" href="/filtrAl/<Виски>">
+                    <div class="card">
+                        <img src="/static/image/Виски.jpg" class="card-img-top " alt="Виски">
+                        <div class="card-body">
+                            <h5 class="card-title">Виски</h5>
+                        </div>
+                    </div>
+                        </a>
+                </div>
+                <div class="col-md-4">
+                    <a class="card-link" href="/filtrAl/<Ром>">
+                    <div class="card">
+                        <img src="/static/image/ром.webp" class="card-img-top " alt="Ром">
+                        <div class="card-body">
+                            <h5 class="card-title">Ром</h5>
+                        </div>
+                    </div>
+                        </a>
+                </div>
+
+                <div class="col-md-4">
+                    <a class="card-link" href="/filtrAl/<Коньяк>">
+                    <div class="card">
+                        <img src="/static/image/Коньяк. Бренди. Арманьяк.jpg" class="card-img-top" alt="Коньяк. Бренди. Арманьяк">
+                        <div class="card-body">
+                            <h5 class="card-title">Коньяк. Бренди. Арманьяк</h5>
+                        </div>
+                    </div>
+                        </a>
+                </div>
+                <div class="col-md-4">
+                    <a class="card-link" href="/filtrAl/<Текила>">
+                    <div class="card">
+                        <img src="/static/image/Текила.jpg" class="card-img-top" alt="Текила">
+                        <div class="card-body">
+                            <h5 class="card-title">Текила</h5>
+                        </div>
+                    </div>
+                        </a>
+                </div>
+                <div class="col-md-4">
+                    <a class="card-link" href="/filtrAl/<Джин>">
+                    <div class="card">
+                        <img src="/static/image/джин.jpg" class="card-img-top" alt="Джин">
+                        <div class="card-body">
+                            <h5 class="card-title">Джин</h5>
+                        </div>
+                    </div>
+                        </a>
+                </div>
+
+                <div class="col-md-4">
+                    <a class="card-link" href="/filtrAl/<Водка>">
+                    <div class="card">
+                        <img src="/static/image/Водка.jpg" class="card-img-top" alt="Джин">
+                        <div class="card-body">
+                            <h5 class="card-title">Водка</h5>
+                        </div>
+                    </div>
+                        </a>
+                </div>
+                <div class="col-md-4">
+                    <a class="card-link" href="/filtrAl/<Ликеры>">
+                    <div class="card">
+                        <img src="/static/image/Ликеры. Вермуты.jpg" class="card-img-top" alt="Джин">
+                        <div class="card-body">
+                            <h5 class="card-title">Ликеры. Вермуты</h5>
+                        </div>
+                    </div>
+                        </a>
+                </div>
+                <div class="col-md-4">
+                    <a class="card-link" href="/filtrAl/<Пиво. Сидр. Слабоалкогольные напитки>">
+                    <div class="card">
+                        <img src="/static/image/Пиво. Сидр. Слабоалкогольные напитки.jpg" class="card-img-top" alt="Джин">
+                        <div class="card-body">
+                            <h5 class="card-title">Пиво. Сидр. Слабоалкогольные напитки</h5>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </main>
+    {% endblock %}
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Контакты</h5>
+                    <ul>
+                        <li>Телефон: 8 (987) 920-24-52</li>
+                        <li>E-mail: kisliсynaov@region63.ru</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Полезные ссылки</h5>
+                    <ul>
+                        <li>Покупателям</li>
+                        <li>Каталог</li>
+                        <li>Акции</li>
+                        <li>Подбор подарков</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Информация</h5>
+                    <p>Чрезмерное употребление алкоголя вредит вашему здоровью.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-center">АЛКОГОЛЬ ВРЕДИТ ВАШЕМУ ЗДОРОВЬЮ</p>
+                    <p class="text-center">Сведения, указанные на сайте, предназначены для информирования посетителей сайта об ассортименте товаров, условиях их приобретения, ценах и скидках, акциях и мероприятиях, проводимых предприятиями розничной торговли, и не являются рекламой.</p>
+                    <p class="text-center">Цена на сайте не является публичной офертой. Цены на сайте являются минимальными, с более точной информацией о стоимости Вы можете ознакомиться в магазине.</p>
+                    <p class="text-center">Фактическое наличие товаров в магазине может не соответствовать представленному на сайте. Уточнить наличие необходимого товара можно у сотрудников магазина.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="footer-links">
+                        <li>2024 © ООО «Алкост Клуб»</li>
+                        <li>Политика конфиденциальности</li>
+                        <li>Разработка сайтов - Multikey</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

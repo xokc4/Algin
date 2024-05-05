@@ -1,0 +1,31 @@
+{% extends 'main.html'%}
+{% block main %}
+<main class="main_basket">
+    {% for product in products %}
+    <div class="container content d-flex align-items-center basket-block">
+        <div class="image-container-basket">
+            <img src="{{product.photo}}" alt="Product Image">
+        </div>
+        <div class="ml-3">
+            <div>
+                {{product.name}}
+            </div>
+            <div>
+                Артикул {{product.article}}
+            </div>
+        </div>
+        <div class="ml-auto price-basket" >
+            {{product.price}}
+        </div>
+        <div>
+            <form action="/buy_product/{{product.id}}">
+                <button type="submit" class="btn btn-primary">
+                    Купить
+                </button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+
+</main>
+{% endblock %}

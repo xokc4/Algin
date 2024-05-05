@@ -1,0 +1,59 @@
+{% extends 'main.html'%}
+{% block main %}
+<body>
+<style>
+        .product-image {
+            max-width: 100%;
+
+            border: 1px solid #ddd; /* Добавляем границу */
+            padding: 5px; /* Добавляем отступы */
+            width:350px;
+            height:400px;
+            box-sizing: border-box; /* Учитываем границы и отступы при расчете ширины */
+        }
+        .product-info {
+            padding: 15px;
+        }
+        .product-info {
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        .product-info h4 {
+            margin-bottom: 10px;
+        }
+        .product-info p {
+            margin-bottom: 5px;
+        }
+ </style>
+<main>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{products.photo}}" class="product-image" alt="{{products.name}}">
+        </div>
+        <div class="col-md-8 product-info">
+            <h2>{{products.name}}</h2>
+            <h3>{{products.price}}</h3>
+            <form action="/Product/buy/<{{products.id}}>">
+                <button type="submit" class="btn btn-primary">Купить</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="product-info">
+                <h4>Общая информация</h4>
+                <p>Тип напитка --- {{products.type}}</p>
+                <p>Страна --- {{products.сountry}}</p>
+                <p>Объем, л --- {{products.volume}}</p>
+                <p>Артикул --- {{products.article}}</p>
+                <p>Крепость, °С --- {{products.strength}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+</body>
+{% endblock %}

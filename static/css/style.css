@@ -1,0 +1,198 @@
+.text{
+text-color:#666;
+}
+.price-basket{
+    margin-right:20px;
+    color: #000;
+    font-size: 25px;
+}
+.image-container-basket {
+    max-width: 100px;
+    max-height: 150px;
+
+    overflow: hidden; /* Обрезаем часть изображения, если оно больше, чем контейнер */
+}
+.image-container-basket img {
+    width: 100%;
+    height: auto; /* Сохраняем пропорции изображения */
+}
+.basket-block{
+    max-height:300px;
+    margin-bottom:25px;
+    border: 1px solid #808080;
+    border-radius: 10px;
+}
+
+.main_basket {
+            min-height: 600px;
+
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.select_com{
+    width:280px;
+}
+header {
+    background-color: #333;
+}
+
+.navbar {
+    padding: 0.5rem 1rem;
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+
+.basket_header{
+    margin-left:15px;
+}
+.navbar-nav {
+
+    margin-left: auto;
+}
+
+.navbar-nav li {
+    margin-left: 1rem;
+}
+
+.navbar-nav li a {
+    color: #333;
+}
+
+.navbar-nav li a:hover {
+    color: #007bff;
+}
+
+.form-inline input {
+    width: 100px;
+}
+
+main {
+    padding: 2rem 0;
+}
+
+.card {
+    margin-bottom: 2rem;
+}
+
+footer {
+    padding: 2rem 0;
+}
+
+footer h5 {
+    margin-top: 1rem;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer li {
+    margin-bottom: 0.5rem;
+}
+
+footer img {
+    height: 30px;
+}
+
+.social-icons img {
+    height: 25px;
+    margin-right: 0.5rem;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.footer-links li {
+    display: inline-block;
+    margin: 0 1rem;
+}
+.img-main{
+     width: 200px; /* Фиксированная ширина изображения */
+    height: 200px; /* Фиксированная высота изображения */
+    object-fit: cover; /* Изображение будет заполнять пространство */
+}
+.footer{
+background-color:#333;
+}
+.card {
+            width: 300px;
+            height: 280px;
+}
+.card-img-top {
+            height: 200px; /* Adjust this value if you want a different height for the image */
+            object-fit: cover; /* This will ensure the image covers the entire width and maintains aspect ratio */
+}
+.footer{
+        color: #cc9;
+}
+.card-link{
+  text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit text color */
+    display: block; /* Make the link block-level */
+}
+
+
+
+
+
+
+
+.product-not-found {
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+        }
+.product-photo {
+    width: 100px;
+    min-height: 150px;
+    object-position: center;
+    /* Обрезаем или масштабируем изображение, чтобы оно вписалось в заданные размеры */
+    object-position: center; /* Центрируем изображение */
+}
+
+.product-item {
+    width: 250px;
+    height: 350px;
+     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Закругленные углы */
+    margin-bottom: 15px;
+    padding: 2px;
+}
+
+.product-name {
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.product-details {
+    font-size: 0.9em;
+    color: #666;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    font-size: 1.1em;
+    text-align: center;
+    font-weight: bold;
+}

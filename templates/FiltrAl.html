@@ -1,0 +1,90 @@
+{% extends 'main.html'%}
+{% block main %}
+<style>
+        #filter-form {
+            max-width: 200px;
+        }
+    </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+           <script>
+        $(document).ready(function() {
+            // Инициализация ползунка для цены
+            $("#price-range").ionRangeSlider({
+                type: "double",
+                min: 0,
+                max: 1000,
+                from: 0,
+                to: 1000,
+                grid: true,
+                grid_num: 10,
+                grid_snap: true,
+                onChange: function(data) {
+                    $("#price-min").val(data.from);
+                    $("#price-max").val(data.to);
+                }
+            });
+
+            // Инициализация ползунка для объема
+            $("#volume-range").ionRangeSlider({
+                type: "double",
+                min: 0,
+                max: 100,
+                from: 0,
+                to: 100,
+                grid: true,
+                grid_num: 10,
+                grid_snap: true,
+                onChange: function(data) {
+                    $("#volume-min").val(data.from);
+                    $("#volume-max").val(data.to);
+                }
+            });
+        });
+    </script>
+<body>
+<main>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-2">
+            <form action="/filtr/<{{products[0].type}}>" method="post">
+            <div class="form-group">
+                <label for="Price-min">Минимальная цена:</label>
+                <input type="number" id="Price-min" name="price-min" value="0" min="0" class="form-control">
+                <label for="Price-max">Максимальная цена:</label>
+                <input type="number" id="Price-max" name="price-max" value="1000" min="0" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="Volume-min">Минимальный объем:</label>
+                <input type="number" id="Volume-min" name="volume-min" value="0" min="0" class="form-control">
+                <label for="Volume-max">Максимальный объем:</label>
+                <input type="number" id="Volume-max" name="volume-max" value="2" min="0" class="form-control">
+            </div>
+            <div id="price-range"></div>
+            <div id="volume-range"></div>
+            <button type="submit" class="btn btn-primary">Применить</button>
+        </form>
+        </div>
+        <div class="col-md-9">
+            <div class="container">
+                <div class="row">
+                {% for product in products %}
+                            <div class="col-md-4">
+                                <div class="product-item">
+                                    <a href="/Product/<{{product.id}}>">
+                                    <img src="{{ product.photo }}" alt="{{ product.name }}" class="img-fluid product-photo" style="max-height: 200px; max-width: 200px;">
+                                    <div class="product-name">{{ product.name }}</div>
+                                    <div class="product-details">{{ product.сountry }} {{ product.volume }}</div>
+                                    <div class="product-price">{{ product.price }}</div>
+                                    </a>
+                                </div>
+                            </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+</body>
+{% endblock %}
