@@ -187,69 +187,10 @@ def search():
             return render_template("ProductNone.html")
 @application.route('/filtrAl/<type>')
 def filtrAl(type):
-    if type=="<Вино>":
-        cleaned_string = type.replace('<', '').replace('>', '')
-        products = Product.query.filter_by(type=cleaned_string).all()
+    cleaned_string = type.replace('<', '').replace('>', '')
+    products = Product.query.filter_by(type=cleaned_string).all()
 
-        return render_template("FiltrAl.html", products=products)
-
-    if type == "<Виски>":
-        cleaned_string = type.replace('<', '').replace('>', '')
-        products = Product.query.filter_by(type=cleaned_string).all()
-
-        return render_template("FiltrAl.html", products=products)
-
-
-    if type=="<Ром>":
-        cleaned_string = type.replace('<', '').replace('>', '')
-        products = Product.query.filter_by(type=cleaned_string).all()
-
-        return render_template("FiltrAl.html", products=products)
-
-
-    if type == "<Коньяк>":
-        cleaned_string = type.replace('<', '').replace('>', '')
-        productsOne = Product.query.filter_by(type=cleaned_string).all()
-        productsTwo= Product.query.filter_by(type="Арманьяк").all()
-        productsThri= Product.query.filter_by(type="Бренди").all()
-        products=productsOne + productsTwo + productsThri
-
-        return render_template("FiltrAl.html", products=products)
-
-
-    if type=="<Текила>":
-        cleaned_string = type.replace('<', '').replace('>', '')
-        products = Product.query.filter_by(type=cleaned_string).all()
-
-        return render_template("FiltrAl.html", products=products)
-
-    if type == "<Джин>":
-        cleaned_string = type.replace('<', '').replace('>', '')
-        products = Product.query.filter_by(type=cleaned_string).all()
-
-        return render_template("FiltrAl.html", products=products)
-
-
-    if type=="<Водка>":
-        cleaned_string = type.replace('<', '').replace('>', '')
-        products = Product.query.filter_by(type=cleaned_string).all()
-
-        return render_template("FiltrAl.html", products=products)
-
-    if type == "<Ликеры>":
-        cleaned_string = type.replace('<', '').replace('>', '')
-        productsOne = Product.query.filter_by(type=cleaned_string).all()
-        productsTwo = Product.query.filter_by(type='Вермуты').all()
-        products= productsOne + productsTwo
-
-        return render_template("FiltrAl.html", products=products)
-
-
-    if type=="<Пиво. Сидр. Слабоалкогольные напитки>":
-        cleaned_string = type.replace('<', '').replace('>', '')
-        products = Product.query.filter_by(type=cleaned_string).all()
-
-        return render_template("FiltrAl.html", products=products)
+    return render_template("FiltrAl.html", products=products)
 
 @application.route('/discounts')
 def discounts():
@@ -398,6 +339,7 @@ def buy_product(product_id):
 
 
 if __name__ == "__main__":
+
     with application.app_context():
         db.create_all()
-    application.run(host='0.0.0.0')
+    application.run(debug=False,host='0.0.0.0')
