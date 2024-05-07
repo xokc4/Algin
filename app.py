@@ -398,7 +398,6 @@ def buy_product(product_id):
 
 
 if __name__ == "__main__":
-    application.run(host='0.0.0.0')
     with application.app_context():
         db.create_all()
-    application.run(debug=False)
+    application.run(host='0.0.0.0')
