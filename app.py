@@ -1,16 +1,24 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
+import logging
 from flask_migrate import Migrate
 from flask_session import Session
 from datetime import datetime
-
+from logging.handlers import RotatingFileHandler
+import traceback
 
 application = Flask(__name__)
 application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///stors.db'
 application.config['SECRET_KEY'] = '@dsfdsghsaw2436edgrq'
 application.config['SESSION_TYPE'] = 'sqlalchemy'  # Тип сессии
 db = SQLAlchemy(application)
+handler = RotatingFileHandler('errors.log', maxBytes=10000, backupCount=3)
+handler.setLevel(logging.ERROR)
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+handler.setFormatter(formatter)
+application.logger.addHandler(handler)
+
 application.config['SESSION_SQLALCHEMY'] = db
 application.config.from_object(Config)
 migrate = Migrate(application, db)
@@ -114,27 +122,6 @@ def store():
     return render_template("store.html")
 @application.route('/filtr/<type>', methods=['GET', 'POST'])
 def filtr(type):
-    global global_User_id
-    client_ip = request.remote_addr
-    if 'user_id' not in session:
-        # Если сессии нет, создаем новую сессию и связываем ее с пользователем
-        user = find_user_by_ip(client_ip)
-        if user:
-            session['user_id'] = user.id
-            global_User_id = user.id
-        else:
-            user = add_user(client_ip)
-            session['user_id'] = user.id
-            global_User_id = user.id
-    else:
-        # Если сессия уже есть, просто получаем пользователя по идентификатору
-        user_id = session['user_id']
-        user = User.query.get(user_id)
-        # Обновляем IP-адрес пользователя, если он изменился
-        if user.ip_address != client_ip:
-            user.ip_address = client_ip
-            db.session.commit()
-        global_User_id = user.id
     cleaned_string = type.replace('<', '').replace('>', '')
     cleaned_string = str(cleaned_string)
     productsTypre = Product.query.filter_by(type=cleaned_string)
@@ -185,12 +172,21 @@ def search():
             return render_template("ProductNone.html")
 @application.route('/filtrAl/<type>', methods=['GET', 'POST'])
 def filtrAl(type):
-    cleaned_string = type.replace('<', '').replace('>', '')
-    cleaned_string=str(cleaned_string)
-    products = Product.query.filter_by(type=cleaned_string).all()
+    try:
+        cleaned_string = type.replace('<', '').replace('>', '')
+        cleaned_string=str(cleaned_string)
+        products = Product.query.filter_by(type=cleaned_string).all()
 
-    return render_template("FiltrAl.html", products=products)
-
+        return render_template("FiltrAl.html", products=products)
+    except:
+        raise Exception("This is a sample error")
+@application.errorhandler(Exception)
+def handle_exception(e):
+    trace = traceback.format_exc()
+    # Запись ошибки в лог с трассировкой стека
+    application.logger.error(f"An error occurred: {e}\nTraceback:\n{trace}")
+    # Возврат сообщения об ошибке пользователю
+    return "An internal server error occurred", 500
 @application.route('/discounts')
 def discounts():
     global global_User_id
