@@ -136,13 +136,13 @@ def filtr(type):
             db.session.commit()
         global_User_id = user.id
     cleaned_string = type.replace('<', '').replace('>', '')
+    cleaned_string = str(cleaned_string)
     productsTypre = Product.query.filter_by(type=cleaned_string)
 
     price_min = request.form.get('price-min', type=float)
     price_max = request.form.get('price-max', type=float)
     volume_min = request.form.get('volume-min', type=float)
     volume_max = request.form.get('volume-max', type=float)
-
 
     # Применяем фильтры, если они не None
     if price_min is not None:
@@ -153,8 +153,6 @@ def filtr(type):
         productsTypre = productsTypre.filter(Product.volume >= volume_min)
     if volume_max is not None:
         productsTypre = productsTypre.filter(Product.volume <= volume_max)
-
-
     # Получение результатов фильтрации
     productsTypre = productsTypre.all()
 
@@ -185,9 +183,10 @@ def search():
             return render_template("Product.html",products=product)
         else:
             return render_template("ProductNone.html")
-@application.route('/filtrAl/<type>')
+@application.route('/filtrAl/<type>', methods=['GET', 'POST'])
 def filtrAl(type):
     cleaned_string = type.replace('<', '').replace('>', '')
+    cleaned_string=str(cleaned_string)
     products = Product.query.filter_by(type=cleaned_string).all()
 
     return render_template("FiltrAl.html", products=products)
@@ -339,7 +338,6 @@ def buy_product(product_id):
 
 
 if __name__ == "__main__":
-
     with application.app_context():
         db.create_all()
-    application.run(debug=False,host='0.0.0.0')
+    application.run(debug=True,host='0.0.0.0')
