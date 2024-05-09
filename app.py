@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
+from urllib.parse import unquote, quote
 from config import Config
+
 import logging
 from flask_migrate import Migrate
 from flask_session import Session
@@ -172,15 +174,22 @@ def search():
             return render_template("ProductNone.html")
 @application.route('/filtrAl/<type>', methods=['GET', 'POST'])
 def filtrAl(type):
+    # Encode the type parameter for use in a URL
+    encoded_type = quote(type)
     cleaned_string = type.replace('<', '').replace('>', '')
     cleaned_string = str(cleaned_string)
     try:
-
+        # Use the decoded_type in your database query
         products = Product.query.filter_by(type=cleaned_string).all()
 
         return render_template("FiltrAl.html", products=products)
-    except:
-        raise Exception(f"This is a sample error: --   {cleaned_string}")
+    except Exception as e:
+        # Decode the encoded_type back to the original string
+        decoded_type = unquote(encoded_type)
+        # If there's an error, re-encode the original type to show in the error message
+        encoded_type = quote(type)
+        encod=quote(cleaned_string)
+        raise Exception(f"This is a sample error: --   {encoded_type} --- {decoded_type} -- {encod}")
 @application.errorhandler(Exception)
 def handle_exception(e):
     trace = traceback.format_exc()

@@ -1,9 +1,37 @@
-
-
-2024-05-08 22:16:53,978 - app - ERROR - An error occurred: This is a sample error
+2024-05-09 14:27:10,301 - app - ERROR - An error occurred: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
 Traceback:
 Traceback (most recent call last):
-  File "C:\Users\ruzae\PycharmProjects\Algin\app.py", line 180, in filtrAl
+  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\flask\app.py", line 854, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\flask\app.py", line 463, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\werkzeug\routing\map.py", line 631, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2024-05-09 14:27:11,388 - app - ERROR - An error occurred: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+Traceback:
+Traceback (most recent call last):
+  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\flask\app.py", line 854, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\flask\app.py", line 463, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\werkzeug\routing\map.py", line 631, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2024-05-09 14:27:14,537 - app - ERROR - An error occurred: This is a sample error: --   %3C%D0%92%D0%BE%3E --- <Во> -- %D0%92%D0%BE
+Traceback:
+Traceback (most recent call last):
+  File "C:\Users\ruzae\PycharmProjects\Algin\app.py", line 185, in filtrAl
     return render_template("FiltrAl.html", products=products)
   File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\flask\templating.py", line 150, in render_template
     return _render(app, template, context)
@@ -30,41 +58,22 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\flask\app.py", line 865, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-  File "C:\Users\ruzae\PycharmProjects\Algin\app.py", line 182, in filtrAl
-    raise Exception("This is a sample error")
-Exception: This is a sample error
+  File "C:\Users\ruzae\PycharmProjects\Algin\app.py", line 192, in filtrAl
+    raise Exception(f"This is a sample error: --   {encoded_type} --- {decoded_type} -- {encod}")
+Exception: This is a sample error: --   %3C%D0%92%D0%BE%3E --- <Во> -- %D0%92%D0%BE
 
-2024-05-08 22:17:19,186 - app - ERROR - An error occurred: This is a sample error
+2024-05-09 14:27:14,596 - app - ERROR - An error occurred: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
 Traceback:
-Traceback (most recent call last):
-  File "C:\Users\ruzae\PycharmProjects\Algin\app.py", line 180, in filtrAl
-    return render_template("FiltrAl.html", products=products)
-  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\flask\templating.py", line 150, in render_template
-    return _render(app, template, context)
-  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\flask\templating.py", line 131, in _render
-    rv = template.render(context)
-  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\jinja2\environment.py", line 1301, in render
-    self.environment.handle_exception()
-  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\jinja2\environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "C:\Users\ruzae\PycharmProjects\Algin\templates\FiltrAl.html", line 1, in top-level template code
-    {% extends 'main.html'%}
-  File "C:\Users\ruzae\PycharmProjects\Algin\templates\main.html", line 86, in top-level template code
-    {% block main %}
-  File "C:\Users\ruzae\PycharmProjects\Algin\templates\FiltrAl.html", line 50, in block 'main'
-    <form action="/filtr/<{{products[0].type}}>" method="post">
-  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\jinja2\environment.py", line 485, in getattr
-    return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: int object has no element 0
-
-During handling of the above exception, another exception occurred:
-
 Traceback (most recent call last):
   File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
     rv = self.dispatch_request()
-  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\flask\app.py", line 865, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-  File "C:\Users\ruzae\PycharmProjects\Algin\app.py", line 182, in filtrAl
-    raise Exception("This is a sample error")
-Exception: This is a sample error
+  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\flask\app.py", line 854, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\flask\app.py", line 463, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "C:\Users\ruzae\PycharmProjects\Algin\venv\lib\site-packages\werkzeug\routing\map.py", line 631, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
 
