@@ -172,14 +172,15 @@ def search():
             return render_template("ProductNone.html")
 @application.route('/filtrAl/<type>', methods=['GET', 'POST'])
 def filtrAl(type):
+    cleaned_string = type.replace('<', '').replace('>', '')
+    cleaned_string = str(cleaned_string)
     try:
-        cleaned_string = type.replace('<', '').replace('>', '')
-        cleaned_string=str(cleaned_string)
+
         products = Product.query.filter_by(type=cleaned_string).all()
 
         return render_template("FiltrAl.html", products=products)
     except:
-        raise Exception("This is a sample error")
+        raise Exception(f"This is a sample error: --   {cleaned_string}")
 @application.errorhandler(Exception)
 def handle_exception(e):
     trace = traceback.format_exc()
