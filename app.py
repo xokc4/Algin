@@ -11,7 +11,9 @@ from logging.handlers import RotatingFileHandler
 import traceback
 
 application = Flask(__name__)
-application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///stors.db'
+
+application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://u2627862_default:k1ge5X9VUylmMQR1@localhost/u2627862_default'
+'''application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///stors.db'''
 application.config['SECRET_KEY'] = '@dsfdsghsaw2436edgrq'
 application.config['SESSION_TYPE'] = 'sqlalchemy'  # Тип сессии
 db = SQLAlchemy(application)
